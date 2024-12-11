@@ -44,6 +44,8 @@ def calc(input_bzb, input_bzz, input_bib, input_bii,\
     res = sp.stats.linregress(i, bi/1000)
     mu = res.slope * (l/1000)/n
     error_mu = l/1000*res.stderr/n + res.slope*0.001/n
+    delta_mu = error_mu*3
+    eps_mu = delta_mu/mu * 100
 
     ''''
     with open(output_mu, 'w+') as f:
@@ -59,7 +61,7 @@ def calc(input_bzb, input_bzz, input_bib, input_bii,\
     '''
 
     np.savetxt(output_bi, np.array([res.slope, res.intercept]))
-    np.savetxt(output_mu, np.array([mu, error_mu]))
+    np.savetxt(output_mu, np.array([mu, error_mu, delta_mu, eps_mu]))
     np.savetxt(output_errors, np.array([res.stderr, res.intercept_stderr]))
 
 
