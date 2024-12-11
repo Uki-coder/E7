@@ -43,7 +43,7 @@ def calc(input_bzb, input_bzz, input_bib, input_bii,\
 
     res = sp.stats.linregress(i, bi/1000)
     mu = res.slope * (l/1000)/n
-    error_mu = l/1000*res.stderr/n + res.slope*0.001/n
+    error_mu = l/1000*res.stderr/n + -res.slope*0.001/n
     delta_mu = error_mu*3
     eps_mu = delta_mu/mu * 100
 
